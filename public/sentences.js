@@ -1,35 +1,58 @@
 const sentences = [
-  { 
-    text: "Sóng bắt đầu từ gió", 
-    explain: "Câu thơ nổi tiếng của Xuân Quỳnh." 
-  },
-  { 
-    text: "Trăm năm trong cõi người ta", 
-    explain: "Câu mở đầu Truyện Kiều của Nguyễn Du." 
-  },
-  { 
-    text: "Người buồn cảnh có vui đâu bao giờ", 
-    explain: "Câu thơ Nguyễn Du, Truyện Kiều." 
-  },
-  { 
-    text: "Một cây làm chẳng nên non", 
-    explain: "Tục ngữ Việt Nam về tinh thần đoàn kết." 
-  },
-  { 
-    text: "Có công mài sắt có ngày nên kim", 
-    explain: "Tục ngữ khuyên nhẫn nại." 
-  },
-  { 
-    text: "Ăn quả nhớ kẻ trồng cây", 
-    explain: "Tục ngữ dạy lòng biết ơn." 
-  },
-  { 
-    text: "Đi một ngày đàng học một sàng khôn", 
-    explain: "Tục ngữ về giá trị trải nghiệm." 
-  },
-  { 
-    text: "Uống nước nhớ nguồn", 
-    explain: "Tục ngữ dạy đạo lý." 
-  },
+{ text: "Người buồn cảnh có vui đâu bao giờ", explain: "Câu thơ Nguyễn Du, Truyện Kiều." },
+{ text: "Trăm năm trong cõi người ta", explain: "Câu mở đầu Truyện Kiều, Nguyễn Du." },
+{ text: "Sóng bắt đầu từ gió", explain: "Xuân Quỳnh, tập thơ Sóng." },
+{ text: "Một cây làm chẳng nên non", explain: "Tục ngữ về tinh thần đoàn kết." },
+{ text: "Có công mài sắt có ngày nên kim", explain: "Tục ngữ dạy kiên trì." },
+{ text: "Ăn quả nhớ kẻ trồng cây", explain: "Tục ngữ dạy lòng biết ơn." },
+{ text: "Đi một ngày đàng học một sàng khôn", explain: "Tục ngữ về giá trị trải nghiệm." },
+{ text: "Uống nước nhớ nguồn", explain: "Tục ngữ Việt Nam." },
+{ text: "Thương người như thể thương thân", explain: "Tục ngữ dạy lòng nhân ái." },
+{ text: "Đói cho sạch rách cho thơm", explain: "Tục ngữ về phẩm hạnh." },
+
+{ text: "Học ăn học nói học gói học mở", explain: "Tục ngữ khuyên học cách sống." },
+{ text: "Tích tiểu thành đại", explain: "Tục ngữ về sự kiên nhẫn." },
+{ text: "Lá lành đùm lá rách", explain: "Tục ngữ về tình tương thân." },
+{ text: "Một giọt máu đào hơn ao nước lã", explain: "Tục ngữ về tình ruột thịt." },
+{ text: "Gần mực thì đen gần đèn thì sáng", explain: "Tục ngữ khuyên chọn bạn." },
+{ text: "Tốt gỗ hơn tốt nước sơn", explain: "Tục ngữ về giá trị nội tâm." },
+{ text: "Có chí thì nên", explain: "Tục ngữ Việt Nam." },
+{ text: "Công cha như núi Thái Sơn", explain: "Ca dao ca ngợi công ơn cha." },
+{ text: "Nghĩa mẹ như nước trong nguồn", explain: "Ca dao ca ngợi tình mẹ." },
+{ text: "Anh em như thể tay chân", explain: "Tục ngữ về tình anh em." },
+
+{ text: "Một con ngựa đau cả tàu bỏ cỏ", explain: "Tục ngữ về tình đoàn kết." },
+{ text: "Chim khôn kêu tiếng rảnh rang", explain: "Tục ngữ khuyên giữ lời nói." },
+{ text: "Cái nết đánh chết cái đẹp", explain: "Tục ngữ về nhân cách." },
+{ text: "Ở hiền gặp lành", explain: "Tục ngữ Việt Nam." },
+{ text: "Có mới nới cũ", explain: "Tục ngữ khuyên sự thủy chung." },
+{ text: "Lời nói chẳng mất tiền mua", explain: "Tục ngữ khuyên nói năng nhã nhặn." },
+{ text: "Một miếng khi đói bằng một gói khi no", explain: "Tục ngữ đề cao sự giúp đỡ đúng lúc." },
+{ text: "Đi với bụt mặc áo cà sa", explain: "Tục ngữ về ảnh hưởng môi trường." },
+{ text: "Đèn nhà ai nấy rạng", explain: "Tục ngữ Việt Nam." },
+{ text: "Trâu buộc ghét trâu ăn", explain: "Tục ngữ về lòng ghen tị." },
+
+{ text: "Người sống đống vàng", explain: "Tục ngữ ca ngợi giá trị con người." },
+{ text: "Một đời người một rừng cây", explain: "Ca dao hiện đại." },
+{ text: "Lửa thử vàng gian nan thử sức", explain: "Tục ngữ về thử thách." },
+{ text: "Của bền tại người", explain: "Tục ngữ khuyên giữ gìn." },
+{ text: "Giấy rách phải giữ lấy lề", explain: "Tục ngữ dạy giữ phẩm hạnh." },
+{ text: "Khó khăn mới biết bạn hiền", explain: "Tục ngữ về tình bạn." },
+{ text: "Cái khó ló cái khôn", explain: "Tục ngữ Việt Nam." },
+{ text: "Một sự nhịn chín sự lành", explain: "Tục ngữ khuyên nhẫn nhịn." },
+{ text: "Bầu ơi thương lấy bí cùng", explain: "Ca dao về tình làng nghĩa xóm." },
+{ text: "Người trong một nước phải thương nhau cùng", explain: "Ca dao Việt Nam." },
+
+{ text: "Học thầy không tày học bạn", explain: "Tục ngữ đề cao học hỏi lẫn nhau." },
+{ text: "Đi một bước biết một bước", explain: "Tục ngữ Việt Nam." },
+{ text: "Đường xa mới biết ngựa hay", explain: "Tục ngữ ca ngợi sự bền bỉ." },
+{ text: "Có bột mới gột nên hồ", explain: "Tục ngữ về điều kiện." },
+{ text: "Trẻ cậy cha già cậy con", explain: "Tục ngữ Việt Nam." },
+{ text: "Mẹ tròn con vuông", explain: "Tục ngữ chúc khi sinh nở." },
+{ text: "Con hơn cha là nhà có phúc", explain: "Tục ngữ về thành công con cái." },
+{ text: "Nước chảy đá mòn", explain: "Tục ngữ về kiên trì." },
+{ text: "Khôn ngoan đối đáp người ngoài", explain: "Tục ngữ khuyên ứng xử." },
+{ text: "Gà cùng một mẹ chớ hoài đá nhau", explain: "Ca dao khuyên anh em đoàn kết." },
+
 ];
 export default sentences;
