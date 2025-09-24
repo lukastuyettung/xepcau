@@ -2,73 +2,134 @@
 <html lang="vi">
 <head>
   <meta charset="UTF-8" />
-  <title>Xếp Câu</title>
+  <title>Xếp Câu - Game Cô Hà</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background: linear-gradient(to bottom, #ffe6f0, #e6ccff);
+      margin: 0;
+      font-family: 'Georgia', serif;
+      background: linear-gradient(135deg, #f9e6ff, #e6f2ff);
       text-align: center;
+      overflow-x: hidden;
+    }
+    header {
       padding: 20px;
+    }
+    header button {
+      background: #a64ca6;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    header button:hover {
+      background: #cc66cc;
     }
     h1 {
+      font-family: 'Brush Script MT', cursive;
+      font-size: 42px;
       color: #663399;
+      margin: 10px 0 20px 0;
+    }
+    .game-wrapper {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+    }
+    .chibi {
+      position: absolute;
+      top: 30px;
+      width: 180px;
+    }
+    .chibi.left {
+      left: 30px;
+    }
+    .chibi.right {
+      right: 30px;
     }
     .game-container {
-      background: white;
-      padding: 20px;
-      border-radius: 15px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-      max-width: 600px;
+      background: rgba(255, 255, 255, 0.9);
+      padding: 30px;
+      border-radius: 25px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      max-width: 650px;
       margin: 0 auto;
+      border: 2px dashed #cc99ff;
     }
     .scrambled {
       margin: 20px 0;
-      font-size: 20px;
-      color: #333;
-      font-weight: bold;
+      font-size: 22px;
+      font-style: italic;
+      color: #444;
+      background: #faf0ff;
+      padding: 15px;
+      border-radius: 15px;
+      border: 1px solid #e0c2ff;
     }
     input {
-      padding: 10px;
-      font-size: 16px;
+      padding: 12px;
+      font-size: 18px;
       width: 80%;
+      border: 1px solid #aaa;
+      border-radius: 12px;
+      outline: none;
     }
-    button {
-      margin: 10px;
-      padding: 10px 20px;
+    input:focus {
+      border-color: #a64ca6;
+    }
+    .buttons {
+      margin-top: 20px;
+    }
+    .buttons button {
+      margin: 8px;
+      padding: 12px 24px;
       border: none;
-      background: #663399;
-      color: white;
-      border-radius: 8px;
+      border-radius: 18px;
+      font-size: 16px;
       cursor: pointer;
+      transition: all 0.2s ease;
     }
-    button:hover {
-      background: #9966cc;
-    }
+    .buttons button:nth-child(1) { background: #66bb6a; color: white; }
+    .buttons button:nth-child(1):hover { background: #57a05a; }
+    .buttons button:nth-child(2) { background: #ef5350; color: white; }
+    .buttons button:nth-child(2):hover { background: #d94c48; }
+    .buttons button:nth-child(3) { background: #42a5f5; color: white; }
+    .buttons button:nth-child(3):hover { background: #368cd4; }
     .result {
       margin-top: 20px;
-      font-size: 18px;
+      font-size: 20px;
       font-weight: bold;
     }
   </style>
 </head>
 <body>
-  <h1>Game Xếp Câu</h1>
-  <div class="game-container">
-    <div id="scrambled" class="scrambled"></div>
-    <input type="text" id="answer" placeholder="Nhập lại câu đầy đủ..." />
-    <div>
-      <button onclick="checkAnswer()">Xác nhận</button>
-      <button onclick="giveUp()">Chịu thua</button>
-      <button onclick="nextSentence()">Câu tiếp</button>
+  <header>
+    <button onclick="window.location.href='https://homepage-gray-omega.vercel.app/'">🏠 Trang chủ</button>
+  </header>
+
+  <h1>Xếp Câu Cùng Cô Hà</h1>
+
+  <div class="game-wrapper">
+    <img src="coha-left.png" alt="Cô Hà Chibi Trái" class="chibi left" />
+    <div class="game-container">
+      <div id="scrambled" class="scrambled"></div>
+      <input type="text" id="answer" placeholder="Hãy nhập lại câu đầy đủ..." />
+      <div class="buttons">
+        <button onclick="checkAnswer()">Xác nhận</button>
+        <button onclick="giveUp()">Chịu thua</button>
+        <button onclick="nextSentence()">Câu tiếp</button>
+      </div>
+      <div id="result" class="result"></div>
     </div>
-    <div id="result" class="result"></div>
+    <img src="coha-right.png" alt="Cô Hà Chibi Phải" class="chibi right" />
   </div>
 
   <script type="module">
     import sentences from './sentences.js';
 
     let currentSentence;
-    let scrambledWords;
 
     function shuffle(array) {
       return array.sort(() => Math.random() - 0.5);
@@ -79,7 +140,7 @@
       document.getElementById("answer").value = "";
 
       currentSentence = sentences[Math.floor(Math.random() * sentences.length)];
-      scrambledWords = shuffle(currentSentence.text.split(" "));
+      let scrambledWords = shuffle(currentSentence.text.split(" "));
       document.getElementById("scrambled").innerText = scrambledWords.join(" / ");
     }
 
@@ -95,8 +156,7 @@
     };
 
     window.giveUp = function() {
-      document.getElementById("result").innerText = "👉 Đáp án đúng: " + currentSentence.text + 
-        " (" + currentSentence.explain + ")";
+      document.getElementById("result").innerText = "👉 Đáp án: " + currentSentence.text + " (" + currentSentence.explain + ")";
       document.getElementById("result").style.color = "blue";
     };
 
@@ -107,10 +167,15 @@
     // Load câu đầu tiên
     newSentence();
 
-    // Cho phép Enter để xác nhận
+    // Enter để xác nhận
     document.getElementById("answer").addEventListener("keydown", function(e) {
       if (e.key === "Enter") {
-        checkAnswer();
+        if (document.getElementById("result").innerText.includes("✅") ||
+            document.getElementById("result").innerText.includes("👉")) {
+          nextSentence();
+        } else {
+          checkAnswer();
+        }
       }
     });
   </script>
