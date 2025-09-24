@@ -33,23 +33,12 @@
       margin: 10px 0 20px 0;
     }
     .game-wrapper {
-      position: relative;
       display: flex;
       justify-content: center;
       margin-top: 20px;
     }
-    .chibi {
-      position: absolute;
-      top: 30px;
-      width: 180px;
-    }
-    .chibi.left {
-      left: 30px;
-    }
-    .chibi.right {
-      right: 30px;
-    }
     .game-container {
+      position: relative;
       background: rgba(255, 255, 255, 0.9);
       padding: 30px;
       border-radius: 25px;
@@ -57,6 +46,19 @@
       max-width: 650px;
       margin: 0 auto;
       border: 2px dashed #cc99ff;
+    }
+    .chibi {
+      position: absolute;
+      top: 40px;
+      width: 150px;
+    }
+    .chibi.left {
+      right: 100%;
+      margin-right: -40px; /* đưa sát vào container */
+    }
+    .chibi.right {
+      left: 100%;
+      margin-left: -40px; /* đưa sát vào container */
     }
     .scrambled {
       margin: 20px 0;
@@ -112,8 +114,8 @@
   <h1>Xếp Câu Cùng Cô Hà</h1>
 
   <div class="game-wrapper">
-    <img src="coha-left.png" alt="Cô Hà Chibi Trái" class="chibi left" />
     <div class="game-container">
+      <img src="coha-left.png" alt="Cô Hà Chibi Trái" class="chibi left" />
       <div id="scrambled" class="scrambled"></div>
       <input type="text" id="answer" placeholder="Hãy nhập lại câu đầy đủ..." />
       <div class="buttons">
@@ -122,8 +124,8 @@
         <button onclick="nextSentence()">Câu tiếp</button>
       </div>
       <div id="result" class="result"></div>
+      <img src="coha-right.png" alt="Cô Hà Chibi Phải" class="chibi right" />
     </div>
-    <img src="coha-right.png" alt="Cô Hà Chibi Phải" class="chibi right" />
   </div>
 
   <script type="module">
@@ -167,7 +169,7 @@
     // Load câu đầu tiên
     newSentence();
 
-    // Enter để xác nhận
+    // Enter để xác nhận hoặc qua câu mới
     document.getElementById("answer").addEventListener("keydown", function(e) {
       if (e.key === "Enter") {
         if (document.getElementById("result").innerText.includes("✅") ||
