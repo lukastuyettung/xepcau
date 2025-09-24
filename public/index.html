@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <title>Xếp Câu</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to bottom, #ffe6f0, #e6ccff);
+      text-align: center;
+      padding: 20px;
+    }
+    h1 {
+      color: #663399;
+    }
+    .game-container {
+      background: white;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .scrambled {
+      margin: 20px 0;
+      font-size: 20px;
+      color: #333;
+      font-weight: bold;
+    }
+    input {
+      padding: 10px;
+      font-size: 16px;
+      width: 80%;
+    }
+    button {
+      margin: 10px;
+      padding: 10px 20px;
+      border: none;
+      background: #663399;
+      color: white;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #9966cc;
+    }
+    .result {
+      margin-top: 20px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>Game Xếp Câu</h1>
+  <div class="game-container">
+    <div id="scrambled" class="scrambled"></div>
+    <input type="text" id="answer" placeholder="Nhập lại câu đầy đủ..." />
+    <div>
+      <button onclick="checkAnswer()">Xác nhận</button>
+      <button onclick="giveUp()">Chịu thua</button>
+      <button onclick="nextSentence()">Câu tiếp</button>
+    </div>
+    <div id="result" class="result"></div>
+  </div>
+
+  <script type="module">
+    import sentences from './sentences.js';
+
+    let currentSentence;
+    let scrambledWords;
+
+    function shuffle(array) {
+      return array.sort(() => Math.random() - 0.5);
+    }
+
+    function newSentence() {
+      document.getElementById("result").innerText = "";
+      document.getElementById("answer").value = "";
+
+      currentSentence = sentences[Math.floor(Math.random() * sentences.length)];
+      scrambledWords = shuffle(currentSentence.text.split(" "));
+      document.getElementById("scrambled").innerText = scrambledWords.join(" / ");
+    }
+
+    window.checkAnswer = function() {
+      const userAnswer = document.getElementById("answer").value.trim();
+      if (userAnswer === currentSentence.text) {
+        document.getElementById("result").innerText = "✅ Chính xác! " + currentSentence.explain;
+        document.getElementById("result").style.color = "green";
+      } else {
+        document.getElementById("result").innerText = "❌ Sai rồi, thử lại!";
+        document.getElementById("result").style.color = "red";
+      }
+    };
+
+    window.giveUp = function() {
+      document.getElementById("result").innerText = "👉 Đáp án đúng: " + currentSentence.text + 
+        " (" + currentSentence.explain + ")";
+      document.getElementById("result").style.color = "blue";
+    };
+
+    window.nextSentence = function() {
+      newSentence();
+    };
+
+    // Load câu đầu tiên
+    newSentence();
+
+    // Cho phép Enter để xác nhận
+    document.getElementById("answer").addEventListener("keydown", function(e) {
+      if (e.key === "Enter") {
+        checkAnswer();
+      }
+    });
+  </script>
+</body>
+</html>
